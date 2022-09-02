@@ -1,0 +1,14 @@
+/home/xuanxuan/share_bike/src/CMakeFiles/install/strip.dir
+/home/xuanxuan/share_bike/src/CMakeFiles/install/local.dir
+/home/xuanxuan/share_bike/src/CMakeFiles/share_bike.dir
+/home/xuanxuan/share_bike/src/CMakeFiles/edit_cache.dir
+/home/xuanxuan/share_bike/src/CMakeFiles/rebuild_cache.dir
+/home/xuanxuan/share_bike/src/CMakeFiles/install.dir
+/home/xuanxuan/share_bike/src/CMakeFiles/list_install_components.dir
+/home/xuanxuan/share_bike/src/common/CMakeFiles/install/strip.dir
+/home/xuanxuan/share_bike/src/common/CMakeFiles/install/local.dir
+/home/xuanxuan/share_bike/src/common/CMakeFiles/common.dir
+/home/xuanxuan/share_bike/src/common/CMakeFiles/edit_cache.dir
+/home/xuanxuan/share_bike/src/common/CMakeFiles/rebuild_cache.dir
+/home/xuanxuan/share_bike/src/common/CMakeFiles/install.dir
+/home/xuanxuan/share_bike/src/common/CMakeFiles/list_install_components.dir

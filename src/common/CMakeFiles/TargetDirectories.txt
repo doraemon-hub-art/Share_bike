@@ -1,0 +1,3 @@
+/home/xuanxuan/share_bike/src/common/CMakeFiles/rebuild_cache.dir
+/home/xuanxuan/share_bike/src/common/CMakeFiles/edit_cache.dir
+/home/xuanxuan/share_bike/src/common/CMakeFiles/common.dir
