@@ -42,15 +42,17 @@ int main(void){
         my_time.tv_sec = 2;
         my_time.tv_usec = 0;
         printf("server waiting\n");
-        //无限期阻塞，并测试文件描述符变动
         // 监视server_sockfd与client_sockfd
-        //result = select(FD_SETSIZE,&testfds,(fd_set*)0,(fd_set*)0,(struct timeval* )0);
-        result = select(FD_SETSIZE,&testfds,(fd_set*)0,(fd_set*)0,&my_time);
-        if(result < 1){//有错误发生
-            perror("server5"); 
+        //result = select(FD_SETSIZE,&testfds,(fd_set*)0,(fd_set*)0,(struct timeval* )0); //无限期阻塞，并测试文件描述符变动
+        result = select(FD_SETSIZE,&testfds,(fd_set*)0,(fd_set*)0,&my_time); //根据my_time中设置的时间进行等待,超过继续往下执行。
+        if(result < 0){//有错误发生
+            perror("select errno"); 
             exit(1);
-        }else if(result == 0){//超过等待时间，未响应
+        }else if(result == 0){//超过等待时间，未响应    
+            FD_ZERO(&readfds);// 清空置0
+            FD_SET(server_sockfd,&readfds);// 将服务端socket重新加入到集合中
             printf("no connect request \n");
+            continue;//没有响应的就别下去遍历了
         }
         //扫描所有的文件描述符(遍历所有的文件句柄)，是件很耗时的事情，严重拉低效率。
         for(fd = 0;fd<FD_SETSIZE;fd++){

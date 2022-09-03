@@ -1,6 +1,13 @@
 {
     "files.associations": {
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "errno.h": "c",
+        "time.h": "c",
+        "ioctl.h": "c",
+        "types.h": "c",
+        "in.h": "c",
+        "typeindex": "c",
+        "typeinfo": "c"
     },
     "cmake.configureOnOpen": true
 }
