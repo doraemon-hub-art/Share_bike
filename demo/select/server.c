@@ -6,7 +6,9 @@
 #include <sys/ioctl.h> 
 #include <unistd.h> 
 #include <stdlib.h>
+#include <errno.h>
 
+int errno;
 int main(void){
     int server_sockfd,client_sockfd;
     int server_len,client_len;
@@ -36,14 +38,19 @@ int main(void){
         int fd;
         int nread;
         testfds = readfds;//相当于备份一份，因为调用select后，传进去的文件描述符集合会被修改。
-
+        struct timeval my_time;
+        my_time.tv_sec = 2;
+        my_time.tv_usec = 0;
         printf("server waiting\n");
         //无限期阻塞，并测试文件描述符变动
         // 监视server_sockfd与client_sockfd
-        result = select(FD_SETSIZE,&testfds,(fd_set*)0,(fd_set*)0,(struct timeval*)0);
+        //result = select(FD_SETSIZE,&testfds,(fd_set*)0,(fd_set*)0,(struct timeval* )0);
+        result = select(FD_SETSIZE,&testfds,(fd_set*)0,(fd_set*)0,&my_time);
         if(result < 1){//有错误发生
             perror("server5"); 
             exit(1);
+        }else if(result == 0){//超过等待时间，未响应
+            printf("no connect request \n");
         }
         //扫描所有的文件描述符(遍历所有的文件句柄)，是件很耗时的事情，严重拉低效率。
         for(fd = 0;fd<FD_SETSIZE;fd++){
