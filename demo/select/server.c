@@ -13,6 +13,7 @@ int main(void){
     struct sockaddr_in server_address;
     struct sockaddr_in client_address;
     int result;
+    //两个文件描述符集合
     fd_set readfds,testfds;//readfds用于检测输出是否就绪的文件描述符集合
 
     server_sockfd = socket(AF_INET,SOCK_STREAM,0); // 建立服务端socket
@@ -34,27 +35,29 @@ int main(void){
         char ch;
         int fd;
         int nread;
-        testfds = readfds;//
+        testfds = readfds;//相当于备份一份，因为调用select后，传进去的文件描述符集合会被修改。
 
         printf("server waiting\n");
         //无限期阻塞，并测试文件描述符变动
+        // 监视server_sockfd与client_sockfd
         result = select(FD_SETSIZE,&testfds,(fd_set*)0,(fd_set*)0,(struct timeval*)0);
         if(result < 1){//有错误发生
-            perror("server5");
+            perror("server5"); 
             exit(1);
         }
-        //扫描所有的文件描述符
+        //扫描所有的文件描述符(遍历所有的文件句柄)，是件很耗时的事情，严重拉低效率。
         for(fd = 0;fd<FD_SETSIZE;fd++){
-            //找到相关文件描述符
+            //找到相关文件描述符，判断是否在testfds这个文件描述符集合中。 
             if(FD_ISSET(fd,&testfds)){
                 //判断是否为服务器套接字，是则表示为客户端请求连接
                 if(fd == server_sockfd){
                     client_len = sizeof(client_address);
                     client_sockfd = accept(server_sockfd,(struct sockaddr*)&client_address,&client_len);
-                    FD_SET(client_sockfd,&readfds);//将客户端socket加入到集合中
+                    FD_SET(client_sockfd,&readfds);//将客户端socket加入到集合中，用来监听是否有数据来。
                     printf("adding client on fd %d\n",client_sockfd);;
-                }else{
-                    ioctl(fd,FIONREAD,&nread);//取得数据量交给nread
+                }else{// 客户端来消息了
+                    //获取接收缓存区中的字节数
+                    ioctl(fd,FIONREAD,&nread);//即获取fd来了多少数据
 
                     //客户端数据请求完毕，关闭套接字，并从集合中清除相应的套接字描述符
                     if(nread ==0){
