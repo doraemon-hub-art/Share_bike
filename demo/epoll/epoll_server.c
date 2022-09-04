@@ -33,7 +33,6 @@ void do_http_request(ConnectStat * stat);
 void welcome_response_handler(ConnectStat * stat);
 void commit_respone_handler(ConnectStat * stat);
 
-
 const char *main_header = "HTTP/1.0 200 OK\r\nServer: Martin Server\r\nContent-Type: text/html\r\nConnection: Close\r\n";
 
 static int epfd = 0;
