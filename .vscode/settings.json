@@ -7,7 +7,8 @@
         "types.h": "c",
         "in.h": "c",
         "typeindex": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "*.ipp": "c"
     },
     "cmake.configureOnOpen": true
 }
