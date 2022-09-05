@@ -340,7 +340,7 @@ void commit_respone_handler(ConnectStat * stat) {
 <body>\n\
 <div align=center height=\"500px\" >\n\
 <br/><br/><br/>\n\
-<h2>欢迎学霸同学&nbsp;%s &nbsp;,你的芳龄是&nbsp;%s！</h2><br/><br/>\n\
+<h2>欢迎学霸同学&nbsp;%s &nbsp;,你的年龄是&nbsp;%s！</h2><br/><br/>\n\
 </div>\n\
 </body>\n\
 </html>\n";
