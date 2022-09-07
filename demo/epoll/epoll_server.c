@@ -25,7 +25,7 @@ struct _ConnectStat {
 	response_handler handler;//不同页面的处理函数
 };
 
-//http协议相关代码
+//http协议相关代码 test
 ConnectStat * stat_init(int fd);
 void connect_handle(int new_fd);
 void do_http_respone(ConnectStat * stat);
