@@ -144,8 +144,7 @@ int main(int argc, char *argv[])
 				{
 					int new_fd = accept(listen_sock, (struct sockaddr*)&peer, &len);
 
-					if (new_fd > 0)
-					{
+					if (new_fd > 0){
 						printf("get a new client:%s:%d\n", inet_ntoa(peer.sin_addr), ntohs(peer.sin_port));
 						//sleep(1000);
 						connect_handle(new_fd);
