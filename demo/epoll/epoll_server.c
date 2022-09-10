@@ -150,8 +150,8 @@ int main(int argc, char *argv[])
 						connect_handle(new_fd);
 					}
 				}
-				else // 接下来对num - 1 个事件处理-test
-				
+				else // 接下来对num - 1 个事件处理-test-test
+
 				{
 					if (revs[i].events & EPOLLIN)
 					{
