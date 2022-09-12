@@ -113,7 +113,7 @@ int main(int argc, char *argv[]){
 	//托管
 	epoll_ctl(epfd, EPOLL_CTL_ADD, listen_sock, &_ev);//将listen_sock添加到epfd中，关心读事件
 
-	struct epoll_event revs[64];
+	struct epoll_event revs[64];//epoll事件结构体
 
 	int timeout = -1;
 	int num = 0;
