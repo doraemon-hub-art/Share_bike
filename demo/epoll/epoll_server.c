@@ -120,15 +120,16 @@ int main(int argc, char *argv[]){
 	int done = 0;
 
 	while (!done){
-		
+		//检测事件
 		switch ((num = epoll_wait(epfd, revs, 64, timeout))){
-		case 0:                  
+		case 0:   //监听超时               
 			printf("timeout\n");
 			break;
-		case -1:                 
+		case -1: //出错     
 			perror("epoll_wait");
 			break;
-		default:{
+		default:{	//>0，即返回了需要处理事件的数目
+			//拿到对应的文件描述符
 			struct sockaddr_in peer;
 			socklen_t len = sizeof(peer);
 
