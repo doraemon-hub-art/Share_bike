@@ -9,7 +9,10 @@
         "typeindex": "c",
         "typeinfo": "c",
         "*.ipp": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "epoll_server.h": "c",
+        "exception": "c",
+        "new": "c"
     },
     "cmake.configureOnOpen": true
 }
